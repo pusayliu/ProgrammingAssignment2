@@ -1,6 +1,5 @@
 ## The following R code is about caching the inverse of a matrix rather than compute it repeatedly
 
-## Write a short comment describing this function
 ## This function is about the value and inverse of the inputted matrix, and returns a special matrix
 makeCacheMatrix <- function(x = matrix()) {
   m <- NULL
