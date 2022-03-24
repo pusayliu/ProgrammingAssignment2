@@ -1,8 +1,7 @@
-## Put comments here that give an overall description of what your
-## functions do
+## The following R code is about caching the inverse of a matrix rather than compute it repeatedly
 
 ## Write a short comment describing this function
-## This function creates a list
+## This function is about the value and inverse of the inputted matrix, and returns a special matrix
 makeCacheMatrix <- function(x = matrix()) {
   m <- NULL
   set <- function(y) {
@@ -10,25 +9,26 @@ makeCacheMatrix <- function(x = matrix()) {
     m <<- NULL
   }
   get <- function() x
-  setmean <- function(solve) m <<- solve
-  getmean <- function() m
+  setinverse <- function(inverse) m <<- inverse
+  getinverse <- function() m
   list(set = set, get = get,
-       setmean = setmean,
-       getmean = getmean)
+       setinverse = setinverse,
+       getinverse = getinverse)
   }
 
 
-## Write a short comment describing this function
-## This function computes the inverse of a matrix
+## The following code first inpect if the inverse has been calculated. 
+## If so, the function gets the inverse from the cache and skips the calculation.
+## Otherwise, it calculates the inverse of the inputted matrix and sets the value of the inverse matrix in the cache via the setinverse function.
 cacheSolve <- function(x, ...) {
   ## Return a matrix that is the inverse of 'x'
-  m <- x$getmean()
+  m <- x$getinverse()
   if(!is.null(m)) {
     message("getting cached data")
     return(m)
   }
   data <- x$get()
   m <- solve(data, ...)
-  x$setmean(m)
+  x$setinverse(m)
   m
 }
